@@ -1,0 +1,5 @@
+[default]
+user=postgres
+password=password123
+host=localhost
+database=postgres
