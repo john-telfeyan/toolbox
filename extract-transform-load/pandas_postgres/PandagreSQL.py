@@ -72,7 +72,7 @@ class PandagreSQL:
            "All Databases" : df with list of all DBs accessable to user
         """
         self.SQL = {}   #Dict of canned SQL 
-        self.SQL["User Tabls"] = '''
+        self.SQL["User Tables"] = '''
         SELECT table_schema,table_name
         FROM information_schema.tables
         WHERE table_type = 'BASE TABLE' 
@@ -149,8 +149,8 @@ class PandagreSQL:
     def load_metadata(self):
         """Query/requery your db connections metadata via postgres specfic SQL
         """
-        self.meta["user_tables"] = pd.read_sql(self.SQL["All Non-admin Tables"], self.engine)
-        self.meta["all_tables"] = pd.read_sql(self.SQL["All Tables and Admin Tables"], self.engine)
+        self.meta["user_tables"] = pd.read_sql(self.SQL["User Tables"], self.engine)
+        self.meta["all_tables"] = pd.read_sql(self.SQL["All Tables"], self.engine)
         self.meta["all_databases"] = pd.read_sql(self.SQL["All Databases"], self.engine)
         
 
@@ -169,7 +169,7 @@ class PandagreSQL:
         
 
             
-"""            
+           
 if __name__ == '__main__':
     # Example usage
     # best practice: connection info in config.ini
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     rddb = PandagreSQL(config_filename="secrets/config.ini", 
                             meta_section="default", user="read_only")
     
-"""
+
     
     
         
