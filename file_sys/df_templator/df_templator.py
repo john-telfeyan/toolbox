@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #python=3.6
 """
-Synopsis: fill a template with variables from a 
+Synopsis: fill a template with variables from a pandas dataframe (shema and data)
 
 Created: Created on Sun Feb 24 04:24:26 2019
 
