@@ -64,7 +64,7 @@ def awesome_animal(animals = "animal_names.txt",
     return adj.rstrip('\n').title()+" "+beast.rstrip('\n').title()
     
 def provocative_predicate (verb_list = "vivid_verbs.txt",
-                           direct_objects = "/usr/share/dict/words"):
+                           direct_objects = "filterd_unix_wordlist.txt"):
     """
     """
     word_pos = choice(range(file_len(direct_objects)))
