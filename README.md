@@ -4,7 +4,9 @@ This is a personal script toolbox for functions I commonly use. They are about 1
 and in various states of disrepair. 
 
 ### Categories:
-- Extract Transform Load
+- Extract Transform Load 
+- Finance : stock data visualization and optimization
+- File_Sys : file management and system admin
 
 
 ### Contributions:
