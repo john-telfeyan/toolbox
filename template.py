@@ -8,7 +8,7 @@ Created: Created on %(date)s
 Sources:
 
 Author:   John Telfeyan
-          john <dot> telfeyan <at> gmail <dot> com
+          https://mailhide.io/e/mMkX3
 
 Distribution: MIT Opens Source Copyright; Full permisions here:
     https://gist.github.com/john-telfeyan/2565b2904355410c1e75f27524aeea5f#file-license-md
