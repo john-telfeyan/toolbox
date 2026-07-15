@@ -12,6 +12,7 @@ Run:  python stay_awake.py
 """
 
 import ctypes
+import random
 import tkinter as tk
 from tkinter import ttk
 
@@ -50,7 +51,11 @@ def press_enter():
 
 # ---- App ----------------------------------------------------------------
 DURATION_SECONDS = 45 * 60
-JIGGLE_EVERY_MS = 4000
+
+
+def next_jiggle_ms():
+    """1 minute plus a random float of 1.000–90.000 s, returned in ms."""
+    return int((60.0 + random.uniform(1.0, 90.0)) * 1000)
 
 
 class StayAwakeApp:
@@ -126,7 +131,7 @@ class StayAwakeApp:
         if not self.running:
             return
         jiggle_mouse()
-        self._jiggle_job = self.root.after(JIGGLE_EVERY_MS, self._jiggle)
+        self._jiggle_job = self.root.after(next_jiggle_ms(), self._jiggle)
 
     def on_close(self):
         keep_system_awake(False)  # never leave the flag stuck on
