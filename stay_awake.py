@@ -67,16 +67,24 @@ class StayAwakeApp:
         self._jiggle_job = None
 
         root.title("Stay Awake")
-        root.geometry("300x160")
+        root.geometry("300x210")
         root.resizable(False, False)
 
         self.time_var = tk.StringVar(value=self._fmt(self.remaining))
         self.status_var = tk.StringVar(value="Ready")
+        self.minutes_var = tk.StringVar(value="45")
 
         ttk.Label(root, textvariable=self.time_var,
                   font=("Segoe UI", 32)).pack(pady=(18, 0))
         ttk.Label(root, textvariable=self.status_var,
                   font=("Segoe UI", 9)).pack()
+
+        dur = ttk.Frame(root)
+        dur.pack(pady=(10, 0))
+        ttk.Label(dur, text="Minutes:").grid(row=0, column=0, padx=(0, 4))
+        self.minutes_entry = ttk.Entry(dur, textvariable=self.minutes_var,
+                                       width=8, justify="center")
+        self.minutes_entry.grid(row=0, column=1)
 
         btns = ttk.Frame(root)
         btns.pack(pady=12)
@@ -95,11 +103,19 @@ class StayAwakeApp:
     def start(self):
         if self.running:
             return
+        try:
+            minutes = float(self.minutes_var.get())
+            if minutes <= 0:
+                raise ValueError
+        except ValueError:
+            self.status_var.set("Enter a positive number of minutes")
+            return
         self.running = True
-        self.remaining = DURATION_SECONDS
+        self.remaining = round(minutes * 60)
         keep_system_awake(True)
         self.start_btn.config(state="disabled")
         self.stop_btn.config(state="normal")
+        self.minutes_entry.config(state="disabled")
         self.status_var.set("Awake — jiggling mouse…")
         self._tick()
         self._jiggle()
@@ -113,6 +129,7 @@ class StayAwakeApp:
         self._tick_job = self._jiggle_job = None
         self.start_btn.config(state="normal")
         self.stop_btn.config(state="disabled")
+        self.minutes_entry.config(state="normal")
         if not finished:
             self.status_var.set("Stopped")
 
